@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore eBooks - Saz Eboks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f8cdda, #1e3c72);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #ff9800;
+        }
+
+        .navbar-brand:hover {
+            color: #ffffff;
+        }
+
+        .hero-section {
+            background: linear-gradient(to right, #2980b9, #8e44ad);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .search-bar {
+            width: 70%;
+            max-width: 600px;
+            padding: 15px;
+            margin: 0 auto 30px auto;
+            border-radius: 30px;
+            font-size: 18px;
+            border: none;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #ff9800;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.7);
+        }
+
+        .explore-btn {
+            background-color: #ff9800;
+            padding: 15px 30px;
+            font-size: 22px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background-color: #ff5722;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .book-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 60px 20px;
+        }
+
+        .book-card {
+            background: linear-gradient(145deg, #ffffff, #e8e8e8);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-15px) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .book-card-body {
+            padding: 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .book-card-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .book-card-description {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .book-card-btn {
+            background-color: #34495e;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .book-card-btn:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .ads-section {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 80px;
+            border-radius: 15px;
+        }
+
+        .ads-section i {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            .search-bar {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="home.html">Saze-books</a>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1 class="hero-title">Discover Your Next eBook</h1>
+    <input type="text" class="search-bar" id="searchInput" placeholder="Search for books..." onkeyup="filterBooks()">
+    <button class="explore-btn" onclick="scrollToBooks()">Start Exploring</button>
+</div>
+
+<!-- eBook Cards Grid -->
+<div class="book-container" id="bookCardsContainer">
+    <!-- Book Card 1 -->
+    <div class="book-card" data-title="The Great Adventure">
+        <img src="assets/images/book1.jpeg" alt="Book Cover">
+        <div class="book-card-body">
+            <h5 class="book-card-title">the online world</h5>
+            <p class="book-card-description">Join us on an epic journey of discovery and adventure. A tale of a lifetime.</p>
+            <a href="https://online.fliphtml5.com/SAZCOM/ormj/"><button class="book-card-btn">Read Now</button></a>
+        </div>
+    </div>
+
+    <!-- Book Card 2 -->
+    <div class="book-card" data-title="Mystery of the Unknown">
+        <img src="assets/images/book2.jpeg" alt="Book Cover">
+        <div class="book-card-body">
+            <h5 class="book-card-title">the art of money making</h5>
+            <p class="book-card-description">Dive into the mystery and thrill of an unknown world filled with secrets.</p>
+           <a href="https://online.fliphtml5.com/SAZCOM/zxhp"><button class="book-card-btn">Read Now</button></a>
+        </div>
+    </div>
+
+    <!-- Book Card 3 -->
+    <div class="book-card" data-title="Secrets of Success">
+        <img src="assets/images/book3.jpeg" alt="Book Cover">
+        <div class="book-card-body">
+            <h5 class="book-card-title">my life and work</h5>
+            <p class="book-card-description">Learn the habits and strategies that successful people use to win at life.</p>
+           <a href="https://online.fliphtml5.com/SAZCOM/uvci/"><button class="book-card-btn">Read Now</button></a>
+        </div>
+    </div>
+</div>
+
+<!-- Ads Section -->
+<div class="ads-section">
+    <i class="fas fa-bolt"></i>
+    Stay Ahead! <br> Discover our exclusive eBook collection.
+</div>
+
+<!-- JavaScript -->
+<script>
+    // Filter books based on search input
+    function filterBooks() {
+        const input = document.getElementById("searchInput");
+        const filter = input.value.toUpperCase();
+        const books = document.querySelectorAll(".book-card");
+
+        books.forEach(book => {
+            const title = book.getAttribute("data-title").toUpperCase();
+            if (title.indexOf(filter) > -1) {
+                book.style.display = "";
+            } else {
+                book.style.display = "none";
+            }
+        });
+    }
+
+    // Smooth scroll to book section
+    function scrollToBooks() {
+        window.scrollTo({
+            top: document.getElementById('bookCardsContainer').offsetTop,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
+</body>
+</html>

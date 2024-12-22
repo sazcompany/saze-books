@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote Sharing - Motivational, Health, Finance, Self-Help</title>
+  
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background: linear-gradient(to right, hsl(66, 100%, 51%), #FFD700, #e1fd41);
+      font-family: Arial, sans-serif;
+    }
+    .quote-box {
+      border: 2px solid #FFD700;
+      background-color: rgba(255, 215, 0, 0.1);
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      background: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      animation: fadeInOut 60s ease-in-out infinite;
+    }
+    .quote-box:hover {
+      transform: scale(1.05);
+    }
+    .quote {
+      font-size: 24px;
+      font-weight: bold;
+      color: black;
+    }
+    .like-btn {
+      background-color: #FFD700;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: inline-flex;
+      align-items: center;
+    }
+    .like-btn:hover {
+      background-color: #FFA500;
+    }
+    .like-btn i {
+      margin-right: 5px;
+    }
+    .icon-container {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .icon-container i {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.3s;
+    }
+    .icon-container i:hover {
+      transform: scale(1.2);
+    }
+    .scrollable-quotes {
+      max-height: 500px;
+      overflow-y: scroll;
+    }
+    .success-container {
+      display: none;
+      width: 100px;
+      height: 100px;
+      background-color: #32CD32;
+      border-radius: 15px;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      animation: fadeInOut 3s ease-in-out forwards;
+    }
+    .loading-circle {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 10px solid transparent;
+      border-top: 10px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear forwards;
+    }
+    .success-container i {
+      font-size: 40px;
+      margin-top: 15px;
+      display: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <div class="scrollable-quotes">
+      <!-- Quote Box 1 -->
+      <div class="quote-box text-center" id="quote1">
+        <div class="quote">"Success is not the key to happiness. Happiness is the key to success."</div>
+        <button class="like-btn" onclick="likeQuote(1)">
+          <i class="fas fa-thumbs-up"></i> Like
+        </button>
+        <div id="success-container1" class="success-container">
+          <div class="loading-circle" id="loading1"></div>
+          <i class="fas fa-check-circle" id="tick1"></i>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="icon-container">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin"></i>
+        </div>
+      </div>
+
+      <!-- Quote Box 2 -->
+      <div class="quote-box text-center" id="quote2">
+        <div class="quote">"The only way to do great work is to love what you do."</div>
+        <button class="like-btn" onclick="likeQuote(2)">
+          <i class="fas fa-thumbs-up"></i> Like
+        </button>
+        <div id="success-container2" class="success-container">
+          <div class="loading-circle" id="loading2"></div>
+          <i class="fas fa-check-circle" id="tick2"></i>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="icon-container">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin"></i>
+        </div>
+      </div>
+
+      <!-- Quote Box 3 -->
+      <div class="quote-box text-center" id="quote3">
+        <div class="quote">"Your time is limited, so don't waste it living someone else's life."</div>
+        <button class="like-btn" onclick="likeQuote(3)">
+          <i class="fas fa-thumbs-up"></i> Like
+        </button>
+        <div id="success-container3" class="success-container">
+          <div class="loading-circle" id="loading3"></div>
+          <i class="fas fa-check-circle" id="tick3"></i>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="icon-container">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p>&copy; 2024 QuoteShare | All Rights Reserved</p>
+    <p>Follow us on: 
+      <a href="#" class="text-white">Facebook</a> | 
+      <a href="#" class="text-white">Instagram</a> | 
+      <a href="#" class="text-white">Twitter</a>
+    </p>
+  </footer>
+
+  <!-- JS for Like Button Animation and Success Container -->
+  <script>
+    let likeCounts = {
+      1: 0,
+      2: 0,
+      3: 0
+    };
+
+    function likeQuote(quoteId) {
+      likeCounts[quoteId]++;
+      const successContainer = document.getElementById('success-container' + quoteId);
+      const loadingCircle = document.getElementById('loading' + quoteId);
+      const tick = document.getElementById('tick' + quoteId);
+
+      // Show success container and start animation
+      successContainer.style.display = 'block';
+      tick.style.display = 'none';
+      
+      // Play loading animation
+      loadingCircle.style.animationPlayState = 'running';
+
+      // After 2 seconds, show tick and play sound
+      setTimeout(() => {
+        loadingCircle.style.animationPlayState = 'paused';
+        tick.style.display = 'block';
+
+        // Play success sound
+        const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+        audio.play();
+
+        // Hide success container after 2 seconds
+        setTimeout(() => {
+          successContainer.style.display = 'none';
+        }, 2000);
+
+      }, 2000);
+
+      // Add animation effect on like button
+      const likeButton = document.querySelector('#quote' + quoteId + ' .like-btn');
+      likeButton.classList.add('animate__animated', 'animate__rubberBand');
+      setTimeout(() => {
+        likeButton.classList.remove('animate__animated', 'animate__rubberBand');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

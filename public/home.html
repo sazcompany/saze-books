@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr" style="font-size:20px; font-family: Roboto, Arial, sans-serif;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>saz e-books</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons --> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+            font-family: 'Roboto', Arial, sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        #logo {
+            width: 98%;
+            height: 98%;
+        }
+        .header-split {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: url('assets/images/header-bg.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .header-buttons button {
+            color: #343a40;
+            background-color: rgb(236, 175, 6);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .header-buttons button:hover {
+            background-color: #ff5722;
+            transform: scale(1.1);
+        }
+
+        .icon-section {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1s 0.5s forwards;
+        }
+        .icon-section a {
+            text-decoration: none;
+            color: #343a40;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            width: 100px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .icon-section a:hover {
+            transform: scale(1.2);
+            background-color: #007bff;
+            color: white;
+        }
+        .icon-section i {
+            font-size: 2.5rem;
+            transition: color 0.3s;
+        }
+        .icon-section p {
+            margin: 5px 0 0;
+        }
+
+        .new-releases {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 1s 1s forwards;
+        }
+        .new-releases h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        .new-releases .release-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: #f1f1f1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .new-releases .release-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .new-releases .release-item img {
+            width: 170px;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .new-releases .release-item p {
+            text-align: center;
+            margin: 0;
+            font-weight: bold;
+        }
+         /* Close Icon */
+         #close-icon {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        .dark-theme .header-split {
+            background: #222;
+        }
+        .dark-theme .icon-section a {
+            border: 1px solid #555;
+            color: #f8f9fa;
+        }
+        .dark-theme .icon-section a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .dark-theme .new-releases {
+            background-color: #495057;
+        }
+
+        /* Transition for the theme */
+        #theme-toggle {
+            transition: transform 0.3s;
+        }
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hamburger Menu */
+        #hamburger-menu {
+            display: block;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #hamburger-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: rgb(226, 194, 13);
+            margin: 5px 0;
+            border:1px;
+        }
+        #menu {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            align-items:start;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        #menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        #menu a:hover {
+            color: #ff5722;
+        }
+/* Close Icon */
+#close-icon {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Show the close icon when the menu is visible */
+#hamburger-checkbox:checked ~ #menu #close-icon {
+    display: block;
+}
+
+/* Adjust menu visibility */
+#hamburger-checkbox:checked ~ #menu {
+    display: flex;
+}
+
+/* Hide menu byb default */
+#menu {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 999;
+}
+
+        /* Language Switcher */
+        #lang-switcher {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        #lang-switcher button {
+            color: #343a40;
+            background-color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        #lang-switcher button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-split">
+        <div class="d-flex align-items-center">
+            <img src="assets/images/logo.jpeg" id="logo" alt="Company Logo" class="me-3" style="border-radius: 5px;">
+        </div>
+        <div class="header-buttons">
+          <a href="search.html"><button class="btn"><i class="fa-solid fa-search"></i> Search</button></a>
+<a href="login.html"><button class="btn"><i class="fa-solid fa-user"></i> Login</button></a> 
+           <a href="register.html"><button class="btn"><i class="fa-solid fa-user-plus"></i> Signup</button></a> 
+        </div>
+    
+    &nbsp;    &nbsp; &nbsp;
+    <div class="d-flex">
+        <button class="btn btn-outline-light me-2" id="theme-toggle" style="color: coral; background-color:antiquewhite  ;">Switch Theme</button>
+    </div>
+</div>
+
+
+
+    <!-- Icon Navigation Section -->
+    <div class="container py-4">
+        <div class="icon-section">
+            <a href="home.html">
+                <i class="fa-solid fa-house"></i>
+                <p>Home</p>
+            </a>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <p>Settings</p>
+            </a>
+            <a href="explore.html">
+                <i class="fa-solid fa-compass"></i>
+                <p>Explore</p>
+            </a>
+            <a href="bytopic.html">
+                <i class="fa-solid fa-book"></i>
+                <p>by Topic</p>
+            </a>
+            <a href="ai.html">
+                <i class="fa-solid fa-robot"></i>
+                <p>book helper</p>
+            </a>
+            <a href="quotes.html">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>Quotes</p>
+                </a>
+        </div>
+    </div>
+<!-- New Releases Section -->
+<div class="container new-releases">
+    <h2>New Releases</h2>
+    <div class="row">
+        <!-- Book 1 -->
+        <div class="col-md-4">
+            <div class="release-item" data-bs-toggle="modal" data-bs-target="#book1Modal">
+                <img src="assets/images/book1.jpeg" alt="Jadili Maisha" class="book-image">
+                <p>the online world</p>
+                <button class="btn-read">Read Now</button>
+            </div>
+        </div>
+        <!-- Book 2 -->
+        <div class="col-md-4">
+            <div class="release-item" data-bs-toggle="modal" data-bs-target="#book2Modal">
+                <img src="assets/images/book2.jpeg" alt="Another Book" class="book-image">
+                <p>the art of  money getting</p>
+                <button class="btn-read">Read Now</button>
+            </div>
+        </div>
+        <!-- Book 3 -->
+        <div class="col-md-4">
+            <div class="release-item" data-bs-toggle="modal" data-bs-target="#book3Modal">
+                <img src="assets/images/book3.jpeg" alt="New Arrival Book" class="book-image">
+                <p>my life and work</p>
+                <button class="btn-read">Read Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Book 1 Description -->
+<div class="modal fade" id="book1Modal" tabindex="-1" aria-labelledby="book1ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content animate__animated animate__fadeIn animate__delay-1s">
+            <div class="modal-header">
+                <h5 class="modal-title" id="book1ModalLabel" style="padding:20px;border-radius: 5px ; background-color: #deff22;">the online world</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/images/book1.jpeg" alt="Jadili Maisha" class="modal-book-img">
+                <p class="modal-description">online world offers insightful perspectives on life, self-reflection, and success. Dive into an inspiring journey of self-improvement.</p>
+                <button class="btn-link" onclick="window.location.href='https://online.fliphtml5.com/SAZCOM/ormj/'">Read Now</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Book 2 Description -->
+<div class="modal fade" id="book2Modal" tabindex="-1" aria-labelledby="book2ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content animate__animated animate__fadeIn animate__delay-1s">
+            <div class="modal-header">
+                <h5 class="modal-title" id="book2ModalLabel" style="padding:20px; border-radius: 5px; background-color: #deff22;">The art of money getting</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/images/book2.jpeg" alt="Another Book" class="modal-book-img">
+                <p class="modal-description">A compelling exploration of modern life and challenges, filled with thought-provoking insights and captivating narratives.</p>
+                <button class="btn-link" onclick="window.location.href='https://online.fliphtml5.com/SAZCOM/zxhp/'">Read Now</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Book 3 Description -->
+<div class="modal fade" id="book3Modal" tabindex="-1" aria-labelledby="book3ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content animate__animated animate__fadeIn animate__delay-1s">
+            <div class="modal-header">
+                <h5 class="modal-title" id="book3ModalLabel" style="padding:20px; border-radius: 5px; background-color: #deff22;">my life and work</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/images/book3.jpeg" alt="New Arrival Book" class="modal-book-img">
+                <p class="modal-description">This fresh release brings a unique perspective on the world of business and innovation. A must-read for aspiring entrepreneurs.</p>
+                <button class="btn-link" onclick="window.location.href='https://online.fliphtml5.com/SAZCOM/uvci/'">Read Now</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles and Scripts for New Releases Section -->
+<style>
+    /* Custom Styles for New Releases */
+    .new-releases {
+        padding: 50px 0;
+        background-color: #f8f9fa;
+        text-align: center;
+    }
+
+    .new-releases h2 {
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 40px;
+    }
+
+    .release-item {
+        margin: 15px 0;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+    }
+
+    .release-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .book-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .release-item:hover .book-image {
+        transform: scale(1.1);
+    }
+
+    .release-item p {
+        margin: 15px 0;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .btn-read {
+        background-color: #ffde22;
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: #333;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-read:hover {
+        background-color: #ff5722;
+        color: white;
+    }
+
+    .modal-book-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .modal-description {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .btn-link {
+        background-color: #deff22;
+        border-radius: 5px;
+        padding: 12px 25px;
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border:none;
+    }
+
+    .btn-link:hover {
+        background-color: #f44336;
+    }
+</style>
+
+<script>
+    // Adding animations for the "jumping" effect on book items
+    document.querySelectorAll('.release-item').forEach(item => {
+        item.classList.add('animate__animated', 'animate__pulse');
+        item.addEventListener('mouseover', () => {
+            item.classList.add('animate__bounce');
+        });
+        item.addEventListener('animationend', () => {
+            item.classList.remove('animate__bounce');
+        });
+    });
+</script>
+
+<!-- Bootstrap JS and Popper.js for modal functionality -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.js"></script>
+
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Toggle Theme
+        let isDark = false;
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            isDark = !isDark;
+            themeToggle.textContent = isDark ? 'Light Theme' : 'Dark Theme';
+        });
+
+      
+        // Language Switcher
+        const langEn = document.getElementById('lang-en');
+        const langSw = document.getElementById('lang-sw');
+        langEn.addEventListener('click', function() {
+            langEn.classList.add('active');
+            langSw.classList.remove('active');
+        });
+        langSw.addEventListener('click', function() {
+            langSw.classList.add('active');
+            langEn.classList.remove('active');
+        });
+        function closeMenu() {
+    document.getElementById('hamburger-checkbox').checked = false;
+}
+
+    
+        function closeMenu() {
+            menu.style.display = 'none';
+        }
+    </script>
+    <script>
+        function closeMenu() {
+            document.getElementById('hamburger-checkbox').checked = false;
+        }
+    $(document).ready(function () {
+        const $body = $('body');
+        const $textPreview = $('#text-preview');
+
+        // Load settings from localStorage
+        function loadSettings() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const textSize = localStorage.getItem('textSize') || '16';
+            const bgColor = localStorage.getItem('bgColor') || '#2575fc';
+
+            // Apply settings
+            if (darkMode) {
+                $body.css('background', '#111');
+                $textPreview.css('background-color', '#333');
+                $textPreview.css('color', '#ffdd57');
+                $('#dark-mode-toggle').prop('checked', true);
+            } else {
+                $body.css('background', 'linear-gradient(135deg, #6a11cb, #2575fc)');
+                $textPreview.css('background-color', 'rgba(255, 255, 255, 0.2)');
+                $textPreview.css('color', '#ffdd57');
+                $('#dark-mode-toggle').prop('checked', false);
+            }
+
+            $textPreview.css('font-size', textSize + 'px');
+            $('#text-size').val(textSize);
+            $body.css('background', bgColor);
+            $('#bg-color-picker').val(bgColor);
+        }
+
+        // Dark Mode Toggle
+        $('#dark-mode-toggle').on('change', function () {
+            const darkMode = $(this).is(':checked');
+            localStorage.setItem('darkMode', darkMode);
+            loadSettings();
+        });
+
+        // Text Size Adjuster
+        $('#text-size').on('change', function () {
+            const textSize = $(this).val();
+            $textPreview.css('font-size', textSize + 'px');
+            localStorage.setItem('textSize', textSize);
+        });
+
+        // Background Color Picker
+        $('#bg-color-picker').on('input', function () {
+            const bgColor = $(this).val();
+            $body.css('background', bgColor);
+            localStorage.setItem('bgColor', bgColor);
+        });
+
+        // Reset Settings
+        $('#reset-settings').on('click', function () {
+            localStorage.removeItem('darkMode');
+            localStorage.removeItem('textSize');
+            localStorage.removeItem('bgColor');
+            loadSettings();
+        });
+
+        // Load settings when the page is ready
+        loadSettings();
+    });
+    </script>
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

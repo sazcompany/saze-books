@@ -1,0 +1,46 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #f3db04, #f3dc0a);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Loader Container */
+  .loader-container {
+    text-align: center;
+  }
+  
+  /* Brand Name */
+  .brand-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #181616;
+    margin-bottom: 20px;
+    text-transform: lowercase;
+  }
+  
+  /* Spinner Animation */
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #ffffff;
+    border-top: 5px solid #00ff88;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Keyframes for Animation */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Dynamic Login Form</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #f8ff00, #f8d743);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 90%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #3ad59f;
+        }
+
+        .input-group .material-icons {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #3ad59f;
+            font-size: 20px;
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, #f8f546, #f3e40c);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        .register-link {
+            margin-top: 15px;
+            color: #3ad59f;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .login-container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login to your account</h2>
+    <form action="register.php" method="POST" id="loginForm">
+        <div class="input-group">
+            <i class="material-icons">account_circle</i>&nbsp;&nbsp;&nbsp;
+            <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+            <i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn-login">Login</button>
+    </form>
+    <div class="register-link">
+        Don't have an account? <a href="register.html">Register here</a>
+    </div>
+</div>
+
+</body>
+</html>
